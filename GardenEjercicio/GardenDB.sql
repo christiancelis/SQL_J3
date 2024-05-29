@@ -5,10 +5,6 @@ drop database  GardenDB;
  use GardenDB;
 
 
-
-
-
-
  create table pais(
     idPais varchar(10) primary key,
     nombre varchar(30) not null,
@@ -71,10 +67,13 @@ create table direccion(
     Foreign Key (idtipo) REFERENCES tipodireccion(idtipo)
 );
 
+
+
 create table oficina(
     codigo varchar(10) PRIMARY KEY,
     idCiudad varchar(10) not null,
-    telefono varchar(30),    
+    telefono varchar(30), 
+    nombre varchar(100) not null,   
     Foreign Key (idCiudad) REFERENCES ciudad(idCiudad)
 );
 
