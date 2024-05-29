@@ -72,6 +72,7 @@ where cli.codigo = pa.codigocliente and fechaPago BETWEEN "2008/01/01" and "2008
 -- 9. Devuelve un listado con el código de pedido, código de cliente, fecha
 -- esperada y fecha de entrega de los pedidos que no han sido entregados a
 -- tiempo.
+use GardenDB;
 select *
 from pedido
 inner join estadoPedido on estadoPedido.idEstado=pedido.idEstado

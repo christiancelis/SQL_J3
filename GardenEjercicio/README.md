@@ -186,7 +186,7 @@ from cliente as cli , pago as pa
 where cli.codigo = pa.codigocliente and DATE_FORMAT(fechaPago,"%Y")="2008";
 
 ```
-## **sin utilizar funciones**
+### **sin utilizar funciones**
 
 ``` sql
 select cli.nombre, cli.codigo, pa.fechaPago
@@ -219,8 +219,41 @@ inner join estadoPedido on estadoPedido.idEstado=pedido.idEstado
 where fechaEntrega > fechaEsperada and estadoPedido.estado="Entregado";
 ```
 
+10. Devuelve un listado con el código de pedido, código de cliente, fecha
+esperada y fecha de entrega de los pedidos cuya fecha de entrega ha sido al
+menos dos días antes de la fecha esperada.
 
+### **Utilizando la función ADDDATE de MySQL.**
 
+``` sql
+select codigoPedido,codigoCliente,fechaEsperada,
+fechaEntrega
+from pedido
+where fechaEntrega <= ADDDATE(fechaEsperada, INTERVAL -2 DAY);
 
+```
+
+### **Utilizando la función DATEDIFF de MySQL.**
+
+``` sql
+select codigoPedido,codigoCliente,fechaEsperada,
+fechaEntrega
+from pedido
+where datediff(fechaEntrega,fechaEsperada)>=2;
+```
+
+### **¿Sería posible resolver esta consulta utilizando el operador de suma + o resta -?**
+
+``` sql
+select codigoPedido,codigoCliente,fechaEsperada,
+fechaEntrega, (day(fechaEntrega)-day(fechaEsperada)) as diferencia
+from pedido
+where  day(fechaEntrega)-day(fechaEsperada) <= -2 and month(fechaEntrega) <= month(fechaEsperada) ;
+
+```
+
+~~~
+
+~~~
 
 
