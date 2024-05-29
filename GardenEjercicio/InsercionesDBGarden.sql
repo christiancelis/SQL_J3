@@ -1,0 +1,332 @@
+use GardenDB;
+
+INSERT INTO pais (idPais, nombre, poblacion) VALUES
+('PA001', 'España', 46704314),
+('PA002', 'Francia', 65273511),
+('PA003', 'Italia', 60461826),
+('PA004', 'Alemania', 83783942),
+('PA005', 'Reino Unido', 67886011),
+('PA006', 'Portugal', 10196709),
+('PA007', 'Países Bajos', 17134872),
+('PA008', 'Bélgica', 11589623),
+('PA009', 'Suiza', 8632703),
+('PA010', 'Austria', 9026085),
+('PA011', 'Polonia', 37887768),
+('PA012', 'Suecia', 10175214),
+('PA013', 'Noruega', 5421241),
+('PA014', 'Dinamarca', 5822763),
+('PA015', 'Finlandia', 5540720),
+('PA016', 'Grecia', 10423054),
+('PA017', 'Turquía', 83154997),
+('PA018', 'Rusia', 145912025),
+('PA019', 'China', 1444216107),
+('PA020', 'Japón', 126476458);
+
+
+
+INSERT INTO Departamento (idDepartamento, idPais, nombre) VALUES
+('DEP001', 'PA001', 'Madrid'),
+('DEP002', 'PA001', 'Barcelona'),
+('DEP003', 'PA002', 'París'),
+('DEP004', 'PA002', 'Lyon'),
+('DEP005', 'PA003', 'Roma'),
+('DEP006', 'PA003', 'Milán'),
+('DEP007', 'PA004', 'Berlín'),
+('DEP008', 'PA004', 'Munich'),
+('DEP009', 'PA005', 'Londres'),
+('DEP010', 'PA005', 'Manchester'),
+('DEP011', 'PA006', 'Lisboa'),
+('DEP012', 'PA007', 'Ámsterdam'),
+('DEP013', 'PA008', 'Bruselas'),
+('DEP014', 'PA009', 'Zúrich'),
+('DEP015', 'PA010', 'Viena'),
+('DEP016', 'PA011', 'Varsovia'),
+('DEP017', 'PA012', 'Estocolmo'),
+('DEP018', 'PA013', 'Oslo'),
+('DEP019', 'PA014', 'Copenhague'),
+('DEP020', 'PA015', 'Helsinki');
+
+
+INSERT INTO ciudad (idCiudad, idRegion, nombre, codigoPostal) VALUES
+('CIU001', 'DEP001', 'Madrid', '28001'),
+('CIU002', 'DEP001', 'Barcelona', '08001'),
+('CIU003', 'DEP002', 'París', '75001'),
+('CIU004', 'DEP002', 'Lyon', '69001'),
+('CIU005', 'DEP003', 'Roma', '00100'),
+('CIU006', 'DEP003', 'Milán', '20100'),
+('CIU007', 'DEP004', 'Berlín', '10115'),
+('CIU008', 'DEP004', 'Munich', '80331'),
+('CIU009', 'DEP005', 'Londres', 'SW1A 1AA'),
+('CIU010', 'DEP005', 'Manchester', 'M1 1AF'),
+('CIU011', 'DEP006', 'Lisboa', '1000-001'),
+('CIU012', 'DEP007', 'Ámsterdam', '1012 JS'),
+('CIU013', 'DEP008', 'Bruselas', '1000'),
+('CIU014', 'DEP009', 'Zúrich', '8001'),
+('CIU015', 'DEP010', 'Viena', '1010'),
+('CIU016', 'DEP011', 'Varsovia', '00-001'),
+('CIU017', 'DEP012', 'Estocolmo', '111 29'),
+('CIU018', 'DEP013', 'Oslo', '0106'),
+('CIU019', 'DEP014', 'Copenhague', '1550'),
+('CIU020', 'DEP015', 'Helsinki', '00100');
+
+
+INSERT INTO gamaproducto (gama, descripcion_texto, descripcion_html, imagen) VALUES
+('Ornamentales', 'Plantas decorativas para jardines y espacios exteriores.', '<p>Plantas decorativas para jardines y espacios exteriores.</p>', 'ornamentales.jpg'),
+('Herramientas', 'Herramientas de jardinería para el cuidado de plantas y césped.', '<p>Herramientas de jardinería para el cuidado de plantas y césped.</p>', 'herramientas.jpg'),
+('Herbáceas', 'Plantas herbáceas para interiores y exteriores.', '<p>Plantas herbáceas para interiores y exteriores.</p>', 'herbaceas.jpg'),
+('Frutales', 'Árboles frutales para huertos y jardines.', '<p>Árboles frutales para huertos y jardines.</p>', 'frutales.jpg');
+
+
+INSERT INTO proveedor (idProveedor, nombre) VALUES
+(1, 'Jardines S.A.'),
+(2, 'Flores y Plantas del Norte'),
+(3, 'Herramientas de Jardín Express'),
+(4, 'Viveros Mediterráneo'),
+(5, 'Árboles Frutales de la Sierra'),
+(6, 'Semillas y Cultivos');
+
+
+INSERT INTO producto (codigo, nombre, dimensiones, descripcion, cantidadstock, precioventa, precioproveedor, gama, idProveedor) VALUES
+('PROD001', 'Rosa roja', '25x10 cm', 'Rosa roja de jardín con fragancia suave.', 100, 12.50, 8.75, 'Ornamentales', 1),
+('PROD002', 'Podadora profesional', '30x15 cm', 'Podadora eléctrica con hoja de acero inoxidable.', 50, 65.00, 45.00, 'Herramientas', 3),
+('PROD003', 'Tomate Cherry', '10x10 cm', 'Planta de tomate cherry para huertos urbanos.', 75, 5.00, 3.50, 'Frutales', 5),
+('PROD004', 'Campanilla azul', '20x15 cm', 'Planta herbácea con flores azules en forma de campanilla.', 120, 8.75, 6.25, 'Herbáceas', 2),
+('PROD005', 'Tulipán mixto', '30x10 cm', 'Bulbos de tulipán en variedad de colores.', 200, 3.50, 2.25, 'Ornamentales', 1),
+('PROD006', 'Rastrillo de jardín', '40x10 cm', 'Rastrillo de acero inoxidable para limpiar jardines.', 30, 15.00, 10.50, 'Herramientas', 3),
+('PROD007', 'Manzano Gala', '100x50 cm', 'Árbol frutal de manzanas Gala para huertos familiares.', 20, 40.00, 28.50, 'Frutales', 5),
+('PROD008', 'Lavanda', '15x15 cm', 'Planta aromática de lavanda para jardines y macetas.', 80, 6.75, 4.75, 'Herbáceas', 2),
+('PROD009', 'Cactus mixto', '10x10 cm', 'Colección de cactus en variedad de formas y tamaños.', 150, 9.50, 6.75, 'Ornamentales', 1),
+('PROD010', 'Pala de jardín', '50x15 cm', 'Pala de jardín con mango ergonómico de madera.', 40, 18.50, 13.25, 'Herramientas', 3),
+('PROD011', 'Naranjo Valencia', '120x80 cm', 'Árbol frutal de naranjas Valencia para huertos y jardines.', 15, 55.00, 38.75, 'Frutales', 5),
+('PROD012', 'Romero', '20x20 cm', 'Planta aromática de romero para condimentar platos.', 90, 5.25, 3.75, 'Herbáceas', 2),
+('PROD013', 'Rosales mixtos', '30x20 cm', 'Colección de rosales en variedad de colores y fragancias.', 100, 11.75, 8.25, 'Ornamentales', 1),
+('PROD014', 'Tijeras de podar', '25x10 cm', 'Tijeras de podar profesionales con hoja de acero.', 60, 22.50, 15.75, 'Herramientas', 3),
+('PROD015', 'Limón Eureka', '80x60 cm', 'Árbol frutal de limones Eureka para huertos y jardines.', 25, 35.00, 24.50, 'Frutales', 5),
+('PROD016', 'Menta', '15x15 cm', 'Planta aromática de menta para infusiones y recetas.', 70, 4.50, 3.25, 'Herbáceas', 2),
+('PROD017', 'Girasol', '40x30 cm', 'Planta ornamental de girasol para jardines y terrazas.', 110, 7.25, 5.00, 'Ornamentales', 1),
+('PROD018', 'Cortacésped eléctrico', '100x50 cm', 'Cortacésped eléctrico para mantenimiento de césped.', 35, 95.00, 66.50, 'Herramientas', 3),
+('PROD019', 'Pera Conference', '110x70 cm', 'Árbol frutal de peras Conference para huertos y jardines.', 18, 48.00, 33.75, 'Frutales', 5),
+('PROD020', 'Albahaca', '20x20 cm', 'Planta aromática de albahaca para cocinar y decorar.', 85, 6.00, 4.25, 'Herbáceas', 2);
+
+INSERT INTO tipodireccion (idtipo, tipo) VALUES
+(1, 'Residencial'),
+(2, 'Comercial'),
+(3, 'Apartado Postal'),
+(4, 'Apartamento'),
+(5, 'Oficina');
+
+
+INSERT INTO direccion (idDireccion, direccion, idtipo) VALUES
+('DIR001', 'Calle Principal 123', 1),
+('DIR002', 'Avenida Central 456', 2),
+('DIR003', 'Apartado 789', 3),
+('DIR004', 'Piso 1, Puerta A', 4),
+('DIR005', 'Edificio Empresarial 789, Oficina 101', 5),
+('DIR006', 'Plaza Mayor 321', 1),
+('DIR007', 'Calle del Comercio 654', 2),
+('DIR008', 'Apartado 987', 3),
+('DIR009', 'Piso 2, Puerta B', 4),
+('DIR010', 'Edificio Corporativo 987, Oficina 202', 5),
+('DIR011', 'Avenida de la Libertad 789', 1),
+('DIR012', 'Calle de las Flores 456', 2),
+('DIR013', 'Apartado 654', 3),
+('DIR014', 'Piso 3, Puerta C', 4),
+('DIR015', 'Edificio Ejecutivo 654, Oficina 303', 5),
+('DIR016', 'Calle de la Paz 789', 1),
+('DIR017', 'Avenida de las Palmeras 456', 2),
+('DIR018', 'Apartado 654', 3),
+('DIR019', 'Piso 4, Puerta D', 4),
+('DIR020', 'Edificio Administrativo 654, Oficina 404', 5);
+
+
+INSERT INTO oficina (codigo, idCiudad, telefono) VALUES
+('OFI001', 'CIU001', '+34 91 123 4567'),
+('OFI002', 'CIU003', '+33 1 23 45 67 89'),
+('OFI003', 'CIU005', '+44 20 1234 5678'),
+('OFI004', 'CIU007', '+49 30 1234567'),
+('OFI005', 'CIU009', '+44 161 123 4567'),
+('OFI006', 'CIU011', '+351 21 123 4567'),
+('OFI007', 'CIU013', '+32 2 123 45 67'),
+('OFI008', 'CIU015', '+43 1 123 4567'),
+('OFI009', 'CIU017', '+46 8 123 45 67'),
+('OFI010', 'CIU019', '+45 33 12 34 56'),
+('OFI011', 'CIU002', '+34 93 987 6543'),
+('OFI012', 'CIU004', '+33 4 56 78 90 12'),
+('OFI013', 'CIU006', '+39 02 123 4567'),
+('OFI014', 'CIU008', '+32 2 987 65 43'),
+('OFI015', 'CIU010', '+43 1 987 6543'),
+('OFI016', 'CIU012', '+31 20 123 4567'),
+('OFI017', 'CIU014', '+41 44 123 45 67'),
+('OFI018', 'CIU016', '+48 22 123 45 67'),
+('OFI019', 'CIU018', '+47 21 12 34 56'),
+('OFI020', 'CIU020', '+358 9 123 4567');
+
+
+INSERT INTO direccionOficina (idDireccion, idOficina) VALUES
+('DIR001', 'OFI001'),
+('DIR002', 'OFI002'),
+('DIR003', 'OFI003'),
+('DIR004', 'OFI004'),
+('DIR005', 'OFI005'),
+('DIR006', 'OFI006'),
+('DIR007', 'OFI007'),
+('DIR008', 'OFI008'),
+('DIR009', 'OFI009'),
+('DIR010', 'OFI010'),
+('DIR011', 'OFI011'),
+('DIR012', 'OFI012'),
+('DIR013', 'OFI013'),
+('DIR014', 'OFI014'),
+('DIR015', 'OFI015'),
+('DIR016', 'OFI016'),
+('DIR017', 'OFI017'),
+('DIR018', 'OFI018'),
+('DIR019', 'OFI019'),
+('DIR020', 'OFI020');
+
+
+
+
+INSERT INTO empleado (codigo, nombre, apellido1, apellido2, extension, email, codigoOficina, codigoJefe, puesto) VALUES
+(1001, 'Juan', 'García', 'López', '1234', 'juan.garcia@example.com', 'OFI001', NULL, 'Gerente'),
+(1002, 'María', 'Martínez', 'Fernández', '2345', 'maria.martinez@example.com', 'OFI002', 1001, 'Supervisor'),
+(1003, 'Pedro', 'Rodríguez', 'Gómez', '3456', 'pedro.rodriguez@example.com', 'OFI003', 1001, 'Asistente'),
+(1004, 'Ana', 'González', 'Pérez', '4567', 'ana.gonzalez@example.com', 'OFI004', 1002, 'Encargado de Ventas'),
+(1005, 'Luis', 'Sánchez', 'Díaz', '5678', 'luis.sanchez@example.com', 'OFI005', 1002, 'Asesor de Jardinería'),
+(1006, 'Elena', 'López', 'Hernández', '6789', 'elena.lopez@example.com', 'OFI006', 1003, 'Administrativo'),
+(1007, 'Pablo', 'Fernández', 'Martín', '7890', 'pablo.fernandez@example.com', 'OFI007', 1003, 'Asistente de Compras'),
+(1008, 'Lucía', 'Pérez', 'García', '8901', 'lucia.perez@example.com', 'OFI008', 1004, 'Contador'),
+(1009, 'Manuel', 'Gómez', 'López', '9012', 'manuel.gomez@example.com', 'OFI009', 1004, 'Analista de Marketing');
+
+
+INSERT INTO cliente (codigo, nombre, nombreContacto, apellidoContacto, telefono, fax, idCiudad, limiteCredito, codigoEmpleadoRepVentas) VALUES
+(2001, 'Jardinería Verde', 'María', 'Fernández', '+34 91 234 5678', '+34 91 234 5679', 'CIU001', 15000.00, 1004),
+(2002, 'Flores y Plantas S.A.', 'Pedro', 'Gómez', '+33 1 23 45 6789', '+33 1 23 45 6790', 'CIU003', 20000.00, 1004),
+(2003, 'Herramientas de Jardín', 'Luisa', 'Hernández', '+44 20 1234 5678', '+44 20 1234 5679', 'CIU005', 18000.00,1004),
+(2004, 'Viveros Mediterráneo', 'Antonio', 'Martínez', '+49 30 1234 5678', '+49 30 1234 5679', 'CIU007', 22000.00, 1004),
+(2005, 'Plantas y Flores', 'Sofía', 'Pérez', '+351 21 123 4567', '+351 21 123 4568', 'CIU009', 25000.00, 1004),
+(2006, 'Decoraciones Naturales', 'Javier', 'Sánchez', '+32 2 123 4567', '+32 2 123 4568', 'CIU011', 19000.00, 1004),
+(2007, 'Jardín del Edén', 'Eva', 'García', '+39 02 123 4567', '+39 02 123 4568', 'CIU013', 23000.00, 1004),
+(2008, 'Plantas Exóticas', 'Diego', 'López', '+43 1 123 4567', '+43 1 123 4568', 'CIU015', 21000.00, 1004),
+(2009, 'Verde y Más', 'Ana', 'Hernández', '+46 8 123 4567', '+46 8 123 4568', 'CIU017', 24000.00, 1004),
+(2010, 'Jardín en Casa', 'José', 'Martín', '+45 33 12 3456', '+45 33 12 3457', 'CIU019', 26000.00, 1004),
+(2011, 'Jardines Modernos', 'Marta', 'Gómez', '+34 93 987 6543', '+34 93 987 6544', 'CIU002', 17000.00, 1004),
+(2012, 'Flores Elegantes', 'Carlos', 'García', '+33 4 56 78 9012', '+33 4 56 78 9013', 'CIU004', 21000.00, 1004),
+(2013, 'Jardines del Sur', 'Isabel', 'Hernández', '+39 02 123 4567', '+39 02 123 4568', 'CIU006', 18000.00, 1004),
+(2014, 'Plantas Frescas', 'Juan', 'Martínez', '+32 2 987 6543', '+32 2 987 6544', 'CIU008', 22000.00, 1004),
+(2015, 'Jardín Feliz', 'Laura', 'Sánchez', '+43 1 987 6543', '+43 1 987 6544', 'CIU010', 25000.00, 1004),
+(2016, 'Plantas Vivas', 'Pablo', 'Gómez', '+31 20 123 4567', '+31 20 123 4568', 'CIU012', 19000.00, 1004),
+(2017, 'Flores y Más', 'Cristina', 'Pérez', '+41 44 123 4567', '+41 44 123 4568', 'CIU014', 23000.00, 1004),
+(2018, 'Jardines Urbanos', 'Javier', 'Hernández', '+48 22 123 4567', '+48 22 123 4568', 'CIU016', 21000.00, 1004),
+(2019, 'Naturaleza en Casa', 'María', 'Martínez', '+47 21 12 3456', '+47 21 12 3457', 'CIU018', 24000.00, 1004),
+(2020, 'Plantas Decorativas', 'Antonio', 'García', '+358 9 123 4567', '+358 9 123 4568', 'CIU020', 26000.00, 1004);
+
+INSERT INTO direccioncliente (idDireccion, idCliente) VALUES
+('DIR001', 2001),
+('DIR002', 2002),
+('DIR003', 2003),
+('DIR004', 2004),
+('DIR005', 2005),
+('DIR006', 2006),
+('DIR007', 2007),
+('DIR008', 2008),
+('DIR009', 2009),
+('DIR010', 2010),
+('DIR011', 2011),
+('DIR012', 2012),
+('DIR013', 2013),
+('DIR014', 2014),
+('DIR015', 2015),
+('DIR016', 2016),
+('DIR017', 2017),
+('DIR018', 2018),
+('DIR019', 2019),
+('DIR020', 2020);
+
+INSERT INTO pago (idTransaccion, formaPago, fechaPago, total, codigocliente) VALUES
+('TRANS001', 'Tarjeta de crédito', '2024-05-01', 150.00, 2001),
+('TRANS002', 'Transferencia bancaria', '2024-05-02', 200.00, 2002),
+('TRANS003', 'Cheque', '2024-05-03', 180.00, 2003),
+('TRANS004', 'Efectivo', '2024-05-04', 220.00, 2004),
+('TRANS005', 'Tarjeta de débito', '2024-05-05', 250.00, 2005),
+('TRANS006', 'Transferencia bancaria', '2024-05-06', 190.00, 2006),
+('TRANS007', 'Cheque', '2024-05-07', 230.00, 2007),
+('TRANS008', 'Efectivo', '2024-05-08', 210.00, 2008),
+('TRANS009', 'Tarjeta de crédito', '2024-05-09', 240.00, 2009),
+('TRANS010', 'Tarjeta de débito', '2024-05-10', 260.00, 2010),
+('TRANS011', 'Transferencia bancaria', '2024-05-11', 170.00, 2011),
+('TRANS012', 'Cheque', '2024-05-12', 210.00, 2012),
+('TRANS013', 'Efectivo', '2024-05-13', 180.00, 2013),
+('TRANS014', 'Tarjeta de crédito', '2024-05-14', 220.00, 2014),
+('TRANS015', 'Tarjeta de débito', '2024-05-15', 250.00, 2015),
+('TRANS016', 'Transferencia bancaria', '2024-05-16', 190.00, 2016),
+('TRANS017', 'Cheque', '2024-05-17', 230.00, 2017),
+('TRANS018', 'Efectivo', '2024-05-18', 210.00, 2018),
+('TRANS019', 'Tarjeta de crédito', '2024-05-19', 240.00, 2019),
+('TRANS020', 'Tarjeta de débito', '2024-05-20', 260.00, 2020);
+
+INSERT INTO estadoPedido (idEstado, estado) VALUES
+(1, 'Pendiente'),
+(2, 'Procesado'),
+(3, 'Enviado'),
+(4, 'Entregado'),
+(5, 'Cancelado'),
+(6, 'Devuelto'),
+(7, 'En preparación'),
+(8, 'Listo para enviar'),
+(9, 'Reembolsado'),
+(10, 'En revisión'),
+(11, 'En espera de pago'),
+(12, 'Pagado'),
+(13, 'En almacén'),
+(14, 'En tránsito'),
+(15, 'Rechazado'),
+(16, 'Aceptado'),
+(17, 'En espera de confirmación'),
+(18, 'Completado'),
+(19, 'No disponible'),
+(20, 'Faltante');
+
+INSERT INTO pedido (codigo, fechaPedido, fechaEsperada, fechaEntrega, idEstado, comentario, idCliente) VALUES
+(3001, '2024-05-01', '2024-05-05', '2024-05-04', 1, 'Pedido urgente', 2001),
+(3002, '2024-05-02', '2024-05-06', '2024-05-05', 2, 'Entrega rápida', 2002),
+(3003, '2024-05-03', '2024-05-07', '2024-05-06', 3, 'Cliente habitual', 2003),
+(3004, '2024-05-04', '2024-05-08', '2024-05-07', 4, 'Primera compra', 2004),
+(3005, '2024-05-05', '2024-05-09', '2024-05-08', 5, 'Pedido grande', 2005),
+(3006, '2024-05-06', '2024-05-10', '2024-05-09', 6, 'Revisión de stock', 2006),
+(3007, '2024-05-07', '2024-05-11', '2024-05-10', 7, 'Entrega programada', 2007),
+(3008, '2024-05-08', '2024-05-12', '2024-05-11', 8, 'Pedido recurrente', 2008),
+(3009, '2024-05-09', '2024-05-13', '2024-05-12', 9, 'Promoción especial', 2009),
+(3010, '2024-05-10', '2024-05-14', '2024-05-13', 10, 'Cliente nuevo', 2010),
+(3011, '2024-05-11', '2024-05-15', '2024-05-14', 11, 'Pedido prioritario', 2011),
+(3012, '2024-05-12', '2024-05-16', '2024-05-15', 12, 'Entrega en tienda', 2012),
+(3013, '2024-05-13', '2024-05-17', '2024-05-16', 13, 'Pedido de prueba', 2013),
+(3014, '2024-05-14', '2024-05-18', '2024-05-17', 14, 'Pedido por teléfono', 2014),
+(3015, '2024-05-15', '2024-05-19', '2024-05-18', 15, 'Pedido en línea', 2015),
+(3016, '2024-05-16', '2024-05-20', '2024-05-19', 16, 'Cliente corporativo', 2016),
+(3017, '2024-05-17', '2024-05-21', '2024-05-20', 17, 'Pedido personalizado', 2017),
+(3018, '2024-05-18', '2024-05-22', '2024-05-21', 18, 'Envío rápido', 2018),
+(3019, '2024-05-19', '2024-05-23', '2024-05-22', 19, 'Pedido internacional', 2019),
+(3020, '2024-05-20', '2024-05-24', '2024-05-23', 20, 'Entrega a domicilio', 2020);
+
+INSERT INTO detallepedido (codigoPedido, codigoProducto, cantidad, precioUnidad, numeroLinea) VALUES
+(3001, 'PROD001', 10, 50.00, 1), 
+(3001, 'PROD002', 5, 25.00, 2),
+ (3002, 'PROD003', 15, 30.00, 1), 
+(3002, 'PROD004', 10, 40.00, 2), 
+(3003, 'PROD005', 8, 35.00, 1),
+ (3003, 'PROD006', 12, 45.00, 2), 
+(3004, 'PROD007', 20, 20.00, 1), 
+(3004, 'PROD008', 25, 15.00, 2), 
+(3005, 'PROD009', 5, 50.00, 1),
+ (3005, 'PROD010', 7, 55.00, 2),
+ (3006, 'PROD011', 10, 60.00, 1),
+(3006, 'PROD012', 12, 65.00, 2),
+(3007, 'PROD013', 8, 70.00, 1),
+(3007, 'PROD014', 10, 75.00, 2),
+(3008, 'PROD015', 15, 80.00, 1),
+(3008, 'PROD016', 20, 85.00, 2),
+(3009, 'PROD017', 5, 90.00, 1),
+(3009, 'PROD018', 7, 95.00, 2),
+(3010, 'PROD019', 10, 100.00, 1),
+(3010, 'PROD020', 12, 105.00, 2);
