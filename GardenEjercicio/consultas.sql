@@ -74,11 +74,11 @@ where cli.codigo = pa.codigocliente and fechaPago BETWEEN "2008/01/01" and "2008
 -- 9. Devuelve un listado con el código de pedido, código de cliente, fecha
 -- esperada y fecha de entrega de los pedidos que no han sido entregados a
 -- tiempo.
-use GardenDB;
-select *
-from pedido
-inner join estadoPedido on estadoPedido.idEstado=pedido.idEstado
-where fechaEntrega > fechaEsperada and estadoPedido.estado="Entregado";
+
+select pe.codigo,pe.idCliente, pe.fechaEsperada,pe.FechaEntrega
+from pedido as pe
+inner join estadoPedido as ep on ep.idEstado=pe.idEstado
+where pe.fechaEntrega > pe.fechaEsperada and ep.estado="Entregado";
 
 -- 10. Devuelve un listado con el código de pedido, código de cliente, fecha
 -- esperada y fecha de entrega de los pedidos cuya fecha de entrega ha sido al
@@ -245,9 +245,9 @@ inner join empleado as jf2 on jf.codigoJefe=jf2.codigo;
 select cli.nombre
 from cliente as cli
 inner join pedido as pe on pe.idCliente=cli.codigo
-inner join estadopedido as est on  est.idestado=pe.idEstado
+inner join estadoPedido as est on  est.idestado=pe.idEstado
 where pe.fechaEntrega > pe.fechaEsperada and est.estado="Entregado";
-
+show tables;
 -- 11. Devuelve un listado de las diferentes gamas de producto que ha comprado
 -- cada cliente.
 
@@ -302,7 +302,7 @@ where cliente.codigoEmpleadoRepVentas is null;
 -- 6. Devuelve un listado que muestre solamente los empleados que no tienen un
 -- cliente asociado junto con los datos de la oficina donde trabajan.
 
-select empleado., oficina.
+select empleado.puesto,empleado.nombre,empleado.apellido1,empleado.apellido2, oficina.*
 from empleado
 left join cliente on empleado.codigo  = cliente.codigoEmpleadoRepVentas 
 left join oficina on empleado.codigoOficina  = oficina.codigo 

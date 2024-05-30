@@ -308,10 +308,10 @@ INSERT INTO estadoPedido (idEstado, estado) VALUES
 
 
 INSERT INTO pedido (codigo, fechaPedido, fechaEsperada, fechaEntrega, idEstado, comentario, idCliente) VALUES
-(3001, '2006-01-17','2006-01-19','2006-01-19', 1, 'Pedido urgente', 2001),
+(3001, '2008-12-22','2008-12-27','2008-12-28', 4, 'Pedido urgente', 2001),
 (3002, '2007-10-23','2007-10-28','2007-10-26', 2, 'Entrega rápida', 2002),
 (3003, '2008-06-20','2008-06-25',NULL,3, 'Cliente habitual', 2003),
-(3004, '2008-11-09', '2008-05-08', '2008-05-07', 4, 'Primera compra', 2004),
+(3004, '2009-01-12', '2009-01-14', '2009-01-15', 4, 'Primera compra', 2004),
 (3008, '2008-05-08', '2008-05-12', '2024-05-11', 8, 'Pedido recurrente', 2008),
 (3009, '2009-05-09', '2009-05-13', '2009-05-12', 9, 'Promoción especial', 2009),
 (3010, '2008-05-10', '2008-05-14', '2008-05-13', 10, 'Cliente nuevo', 2010),
