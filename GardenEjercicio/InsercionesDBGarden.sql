@@ -216,36 +216,36 @@ INSERT INTO direccionOficina (idDireccion, idOficina) VALUES
 
 
 INSERT INTO empleado (codigo, nombre, apellido1, apellido2, extension, email, codigoOficina, codigoJefe, puesto) VALUES
-(1001, 'Juan', 'García', 'López', '1234', 'juan.garcia@example.com', 'OFI001', NULL, 'Director General'),
-(1002, 'María', 'Martínez', 'Fernández', '2345', 'maria.martinez@example.com', 'OFI002', 1001, 'Subdirector Marketing'),
-(1003, 'Pedro', 'Rodríguez', 'Gómez', '3456', 'pedro.rodriguez@example.com', 'OFI003', 1002, 'Subdirector Ventas'),
-(1004, 'Ana', 'González', 'Pérez', '4567', 'ana.gonzalez@example.com', 'OFI004', 1002, 'Secretaria'),
-(1005, 'Luis', 'Sánchez', 'Díaz', '5678', 'luis.sanchez@example.com', 'OFI005', 1003, 'Representante Ventas'),
-(1006, 'Elena', 'López', 'Hernández', '6789', 'elena.lopez@example.com', 'OFI019', 1003, 'Representante Ventas'),
-(1007, 'Pablo', 'Fernández', 'Martín', '7890', 'pablo.fernandez@example.com', 'OFI007', 1003, 'Representante Ventas'),
-(1008, 'Lucía', 'Pérez', 'García', '8901', 'lucia.perez@example.com', 'OFI008', 1003, 'Representante Ventas'),
-(1009, 'Manuel', 'Gómez', 'López', '9012', 'manuel.gomez@example.com', 'OFI009', 1003, 'Representante Ventas');
+(1, 'Juan', 'García', 'López', '1234', 'juan.garcia@example.com', 'OFI001', NULL, 'Director General'),
+(2, 'María', 'Martínez', 'Fernández', '2345', 'maria.martinez@example.com', 'OFI002', 1, 'Subdirector Marketing'),
+(3, 'Pedro', 'Rodríguez', 'Gómez', '3456', 'pedro.rodriguez@example.com', 'OFI003', 2, 'Subdirector Ventas'),
+(4, 'Ana', 'González', 'Pérez', '4567', 'ana.gonzalez@example.com', 'OFI004', 2, 'Secretaria'),
+(5, 'Luis', 'Sánchez', 'Díaz', '5678', 'luis.sanchez@example.com', 'OFI005', 3, 'Representante Ventas'),
+(6, 'Elena', 'López', 'Hernández', '6789', 'elena.lopez@example.com', 'OFI019', 3, 'Representante Ventas'),
+(7, 'Pablo', 'Fernández', 'Martín', '7890', 'pablo.fernandez@example.com', 'OFI007', 3, 'Representante Ventas'),
+(8, 'Lucía', 'Pérez', 'García', '8901', 'lucia.perez@example.com', 'OFI008', 3, 'Representante Ventas'),
+(11, 'Manuel', 'Gómez', 'López', '9012', 'manuel.gomez@example.com', 'OFI009', 3, 'Representante Ventas');
 
 
 INSERT INTO cliente (codigo, nombre, nombreContacto, apellidoContacto, telefono, fax, idCiudad, limiteCredito, codigoEmpleadoRepVentas)
 VALUES
-('2001', 'Jardinería Verde', 'María', 'Fernández', '+34 91 234 5678', '+34 91 234 5679', 'MAD', 15000.00, 1005),
-('2002', 'Flores y Plantas S.A.', 'Pedro', 'Gómez', '+33 1 23 45 6789', '+33 1 23 45 6790', 'BCN', 20000.00, 1006),
-('2003', 'Herramientas de Jardín', 'Luisa', 'Hernández', '+44 20 1234 5678', '+44 20 1234 5679', 'VAL', 18000.00,1007),
-('2004', 'Analista de MarketingJardín del Edén', 'Eva', 'García', '+39 02 123 4567', '+39 02 123 4568', 'MIL', 23000.00, 1006),
-('2008', 'Plantas Exóticas', 'Diego', 'López', '+43 1 123 4567', '+43 1 123 4568', 'SEV', 21000.00, 1007),
-('2009', 'Verde y Más', 'Ana', 'Hernández', '+46 8 123 4567', '+46 8 123 4568', 'NYC', 24000.00, 1008),
-('2010', 'Jardín en Casa', 'José', 'Martín', '+45 33 12 3456', '+45 33 12 3457', 'STU', 26000.00, 1009),
-('2011', 'Jardines Modernos', 'Marta', 'Gómez', '+34 93 987 6543', '+34 93 987 6544', 'BCN', 17000.00, 1005),
-('2012', 'Flores Elegantes', 'Carlos', 'García', '+33 4 56 78 9012', '+33 4 56 78 9013', 'LYO', 21000.00, 1006),
-('2013', 'Jardines del Sur', 'Isabel', 'Hernández', '+39 02 123 4567', '+39 02 123 4568', 'MIL', 18000.00, 1007),
-('2014', 'Plantas Frescas', 'Juan', 'Martínez', '+32 2 987 6543', '+32 2 987 6544', 'OSA', 22000.00, 1008),
-('2015', 'Jardín Feliz', 'Laura', 'Sánchez', '+43 1 987 6543', '+43 1 987 6544', 'BRI', 25000.00, 1009),
-('2016', 'Plantas Vivas', 'Pablo', 'Gómez', '+31 20 123 4567', '+31 20 123 4568', 'MAD', 19000.00, 1005),
-(2017, 'Flores y Más', 'Cristina', 'Pérez', '+41 44 123 4567', '+41 44 123 4568', 'MEL', 23000.00, 1006),
-(2018, 'Jardines Urbanos', 'Javier', 'Hernández', '+48 22 123 4567', '+48 22 123 4568', 'SEV', 21000.00, 1007),
-(2019, 'Naturaleza en Casa', 'María', 'Martínez', '+47 21 12 3456', '+47 21 12 3457', 'CDMX', 24000.00, 1008),
-(2020, 'Plantas Decorativas', 'Antonio', 'García', '+358 9 123 4567', '+358 9 123 4568', 'VEN', 26000.00, 1009);
+('2001', 'Jardinería Verde', 'María', 'Fernández', '+34 91 234 5678', '+34 91 234 5679', 'MAD', 15000.00, 5),
+('2002', 'Flores y Plantas S.A.', 'Pedro', 'Gómez', '+33 1 23 45 6789', '+33 1 23 45 6790', 'BCN', 20000.00, 6),
+('2003', 'Herramientas de Jardín', 'Luisa', 'Hernández', '+44 20 1234 5678', '+44 20 1234 5679', 'VAL', 18000.00,7),
+('2004', 'Analista de MarketingJardín del Edén', 'Eva', 'García', '+39 02 123 4567', '+39 02 123 4568', 'MIL', 23000.00, 6),
+('2008', 'Plantas Exóticas', 'Diego', 'López', '+43 1 123 4567', '+43 1 123 4568', 'SEV', 21000.00, 7),
+('2009', 'Verde y Más', 'Ana', 'Hernández', '+46 8 123 4567', '+46 8 123 4568', 'NYC', 24000.00, 8),
+('2010', 'Jardín en Casa', 'José', 'Martín', '+45 33 12 3456', '+45 33 12 3457', 'STU', 26000.00, 11),
+('2011', 'Jardines Modernos', 'Marta', 'Gómez', '+34 93 987 6543', '+34 93 987 6544', 'BCN', 17000.00, 5),
+('2012', 'Flores Elegantes', 'Carlos', 'García', '+33 4 56 78 9012', '+33 4 56 78 9013', 'LYO', 21000.00, 6),
+('2013', 'Jardines del Sur', 'Isabel', 'Hernández', '+39 02 123 4567', '+39 02 123 4568', 'MIL', 18000.00, 7),
+('2014', 'Plantas Frescas', 'Juan', 'Martínez', '+32 2 987 6543', '+32 2 987 6544', 'OSA', 22000.00, 8),
+('2015', 'Jardín Feliz', 'Laura', 'Sánchez', '+43 1 987 6543', '+43 1 987 6544', 'BRI', 25000.00, 11),
+('2016', 'Plantas Vivas', 'Pablo', 'Gómez', '+31 20 123 4567', '+31 20 123 4568', 'MAD', 19000.00, 5),
+("2017", 'Flores y Más', 'Cristina', 'Pérez', '+41 44 123 4567', '+41 44 123 4568', 'MEL', 23000.00, 6),
+("2018", 'Jardines Urbanos', 'Javier', 'Hernández', '+48 22 123 4567', '+48 22 123 4568', 'SEV', 21000.00, 7),
+("2019", 'Naturaleza en Casa', 'María', 'Martínez', '+47 21 12 3456', '+47 21 12 3457', 'CDMX', 24000.00, 8),
+("2020", 'Plantas Decorativas', 'Antonio', 'García', '+358 9 123 4567', '+358 9 123 4568', 'MAD', 26000.00, 11);
 
 INSERT INTO direccioncliente (idDireccion, idCliente) VALUES
 ('DIR001', 2001),
@@ -270,11 +270,11 @@ INSERT INTO pago (idTransaccion, formaPago, fechaPago, total, codigocliente) VAL
 ('TRANS001', 'Tarjeta de crédito', '2006-05-01', 150.00, 2001),
 ('TRANS002', 'Transferencia bancaria', '2007-05-02', 200.00, 2002),
 ('TRANS003', 'Cheque', '2008-05-03', 180.00, 2003),
-('TRANS004', 'Efectivo', '2009-05-04', 220.00, 2004),
+('TRANS004', 'Paypal', '2008-05-04', 220.00, 2004),
 ('TRANS009', 'Tarjeta de crédito', '2010-05-09', 240.00, 2009),
 ('TRANS010', 'Tarjeta de débito', '2009-05-10', 260.00, 2010),
 ('TRANS011', 'Transferencia bancaria', '2008-05-11', 170.00, 2011),
-('TRANS012', 'Cheque', '2007-05-12', 210.00, 2012),
+('TRANS012', 'Paypal', '2008-05-12', 210.00, 2012),
 ('TRANS013', 'Efectivo', '2006-05-13', 180.00, 2013),
 ('TRANS014', 'Tarjeta de crédito', '2011-05-14', 220.00, 2014),
 ('TRANS015', 'Tarjeta de débito', '2010-05-15', 250.00, 2015),
@@ -306,23 +306,25 @@ INSERT INTO estadoPedido (idEstado, estado) VALUES
 (19, 'No disponible'),
 (20, 'Faltante');
 
+
 INSERT INTO pedido (codigo, fechaPedido, fechaEsperada, fechaEntrega, idEstado, comentario, idCliente) VALUES
-(3001, '2006-05-01', '2024-05-05', '2024-05-04', 1, 'Pedido urgente', 2001),
-(3002, '2007-05-02', '2024-05-06', '2024-05-05', 2, 'Entrega rápida', 2002),
-(3003, '2008-05-03', '2024-05-07', '2024-05-06', 3, 'Cliente habitual', 2003),
-(3004, '2009-05-04', '2024-05-08', '2024-05-07', 4, 'Primera compra', 2004),
-(3009, '2009-05-09', '2024-05-13', '2024-05-12', 9, 'Promoción especial', 2009),
-(3010, '2008-05-10', '2024-05-14', '2024-05-13', 10, 'Cliente nuevo', 2010),
-(3011, '2024-05-11', '2024-05-15', '2024-05-14', 11, 'Pedido prioritario', 2011),
-(3012, '2024-05-12', '2024-05-16', '2024-05-15', 12, 'Entrega en tienda', 2012),
-(3013, '2024-05-13', '2024-05-17', '2024-05-16', 13, 'Pedido de prueba', 2013),
-(3014, '2024-05-14', '2024-05-18', '2024-05-17', 14, 'Pedido por teléfono', 2014),
-(3015, '2024-05-15', '2024-05-19', '2024-05-18', 15, 'Pedido en línea', 2015),
-(3016, '2024-05-16', '2024-05-20', '2024-05-19', 16, 'Cliente corporativo', 2016),
-(3017, '2024-05-17', '2024-05-21', '2024-05-20', 17, 'Pedido personalizado', 2017),
-(3018, '2024-05-18', '2024-05-22', '2024-05-21', 18, 'Envío rápido', 2018),
-(3019, '2024-05-19', '2024-05-23', '2024-05-22', 19, 'Pedido internacional', 2019),
-(3020, '2024-05-20', '2024-05-24', '2024-05-23', 20, 'Entrega a domicilio', 2020);
+(3001, '2006-01-17','2006-01-19','2006-01-19', 1, 'Pedido urgente', 2001),
+(3002, '2007-10-23','2007-10-28','2007-10-26', 2, 'Entrega rápida', 2002),
+(3003, '2008-06-20','2008-06-25',NULL,3, 'Cliente habitual', 2003),
+(3004, '2008-11-09', '2008-05-08', '2008-05-07', 4, 'Primera compra', 2004),
+(3008, '2008-05-08', '2008-05-12', '2024-05-11', 8, 'Pedido recurrente', 2008),
+(3009, '2009-05-09', '2009-05-13', '2009-05-12', 9, 'Promoción especial', 2009),
+(3010, '2008-05-10', '2008-05-14', '2008-05-13', 10, 'Cliente nuevo', 2010),
+(3011, '2008-05-11', '2008-05-15', '2008-05-14', 11, 'Pedido prioritario', 2011),
+(3012, '2009-05-12', '2009-05-16', '2009-05-15', 12, 'Entrega en tienda', 2012),
+(3013, '2008-05-13', '2008-05-17', '2008-05-16', 13, 'Pedido de prueba', 2013),
+(3014, '2007-05-14', '2007-05-18', '2007-05-17', 14, 'Pedido por teléfono', 2014),
+(3015, '2010-05-15', '2010-05-19', '2010-05-18', 15, 'Pedido en línea', 2015),
+(3016, '2011-05-16', '2011-05-20', '2011-05-19', 16, 'Cliente corporativo', 2016),
+(3017, '2008-05-17', '2008-05-21', '2008-05-20', 17, 'Pedido personalizado', 2017),
+(3018, '2009-11-18', '2009-11-22', '2009-11-21', 18, 'Envío rápido', 2018),
+(3019, '2010-03-19', '2010-03-23', '2010-05-22', 19, 'Pedido internacional', 2019),
+(3020, '2010-07-20', '2010-07-24', '2010-07-23', 20, 'Entrega a domicilio', 2020);
 
 INSERT INTO detallepedido (codigoPedido, codigoProducto, cantidad, precioUnidad, numeroLinea) VALUES
 (3001, 'PROD001', 10, 50.00, 1), 

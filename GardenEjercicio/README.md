@@ -193,7 +193,6 @@ select cli.nombre, cli.codigo, pa.fechaPago
 from cliente as cli , pago as pa
 where cli.codigo = pa.codigocliente and fechaPago BETWEEN "2008/01/01" and "2008/12/31";
 
-
 ```
 
 
@@ -226,34 +225,121 @@ menos dos días antes de la fecha esperada.
 ### **Utilizando la función ADDDATE de MySQL.**
 
 ``` sql
-select codigoPedido,codigoCliente,fechaEsperada,
-fechaEntrega
-from pedido
-where fechaEntrega <= ADDDATE(fechaEsperada, INTERVAL -2 DAY);
-
+select pe.codigo,cli.codigo,pe.fechaEsperada,pe.fechaEntrega
+from cliente as cli 
+inner join pedido as pe on pe.idCliente = cli.codigo
+wher
 ```
 
 ### **Utilizando la función DATEDIFF de MySQL.**
 
 ``` sql
-select codigoPedido,codigoCliente,fechaEsperada,
-fechaEntrega
-from pedido
-where datediff(fechaEntrega,fechaEsperada)>=2;
+select pe.codigo,cli.codigo,pe.fechaEsperada,pe.fechaEntrega
+from cliente as cli 
+inner join pedido as pe on pe.idCliente = cli.codigo
+where datediff(pe.fechaEsperada,pe.fechaEntrega)>=2;
 ```
 
 ### **¿Sería posible resolver esta consulta utilizando el operador de suma + o resta -?**
 
 ``` sql
-select codigoPedido,codigoCliente,fechaEsperada,
-fechaEntrega, (day(fechaEntrega)-day(fechaEsperada)) as diferencia
+select pe.codigo,cli.codigo,pe.fechaEsperada,pe.fechaEntrega
+from cliente as cli 
+inner join pedido as pe on pe.idCliente = cli.codigo
+where datediff(pe.fechaEsperada,pe.fechaEntrega)>=2;
+```
+
+~~~
+
+~~~
+
+11. Devuelve un listado de todos los pedidos que fueron rechazados en 2009.
+
+``` sql
+select codigo,fechaPedido, fechaEsperada, fechaEntrega
 from pedido
-where  day(fechaEntrega)-day(fechaEsperada) <= -2 and month(fechaEntrega) <= month(fechaEsperada) ;
+where year(fechaPedido)="2009";
+```
+
+~~~
+
+~~~
+
+12. Devuelve un listado de todos los pedidos que han sido entregados en el
+mes de enero de cualquier año.
+
+
+``` sql
+select codigo,fechaPedido, fechaEsperada, fechaEntrega
+from pedido
+where month(fechaPedido)="01";
 
 ```
 
 ~~~
 
 ~~~
+
+
+13. Devuelve un listado con todos los pagos que se realizaron en el
+año 2008 mediante Paypal. Ordene el resultado de mayor a menor.
+
+
+``` sql
+select *
+from pago
+where year(fechaPago)="2008" and formaPago="Paypal"
+ORDER BY total desc;
+```
+~~~
+
+~~~
+
+14. Devuelve un listado con todas las formas de pago que aparecen en la
+tabla pago. Tenga en cuenta que no deben aparecer formas de pago
+repetidas.
+
+``` sql
+select distinct(formaPago)
+from pago;
+
+```
+~~~
+
+~~~
+
+15. Devuelve un listado con todos los productos que pertenecen a la
+gama Ornamentales y que tienen más de 100 unidades en stock. El listado
+deberá estar ordenado por su precio de venta, mostrando en primer lugar
+los de mayor precio.
+
+``` sql
+select pro.gama,pro.nombre
+from producto as pro 
+inner join gamaproducto as gp on gp.gama=pro.gama
+where gp.gama ="Ornamentales" and pro.cantidadstock >100
+order by pro.precioventa desc;
+
+```
+~~~
+
+~~~
+
+
+16. Devuelve un listado con todos los clientes que sean de la ciudad de Madrid y
+cuyo representante de ventas tenga el código de empleado 11 o 30.
+``` sql
+select cli.codigo,cli.nombre as cliente, cli.nombrecontacto as contacto
+from cliente as cli 
+inner join ciudad as ci on ci.idciudad=cli.idciudad
+where ci.nombre="Madrid" and cli.codigoEmpleadoRepVentas = 11 or cli.codigoEmpleadoRepVentas = 30;
+```
+~~~
+
+~~~
+
+
+## Consultas multitabla (Composición interna)
+
 
 
