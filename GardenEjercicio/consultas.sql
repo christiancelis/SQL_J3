@@ -18,7 +18,12 @@ inner join Departamento as dep on dep.idDepartamento=ciu.idRegion
 inner join pais as pa on pa.idPais= dep.idPais
 where pa.nombre="España";
 
-
+-- 3. Devuelve un listado con el nombre, apellidos y email de los empleados cuyo
+-- jefe tiene un código de jefe igual a 7.
+select emp.nombre, emp.apellido1,emp.apellido2,emp.email
+from empleado as emp
+inner join empleado as jf on jf.codigo=emp.codigoJefe
+where jf.codigoJefe=7;
 
 -- 4. Devuelve el nombre del puesto, nombre, apellidos y email del jefe de la
 -- empresa.
@@ -85,18 +90,18 @@ where pe.fechaEntrega > pe.fechaEsperada and ep.estado="Entregado";
 -- menos dos días antes de la fecha esperada.
 
 select pe.codigo,cli.codigo,pe.fechaEsperada,pe.fechaEntrega
-from cliente as cli 
+from cliente as cli
 inner join pedido as pe on pe.idCliente = cli.codigo
 where pe.fechaEntrega <= ADDDATE(pe.fechaEsperada, INTERVAL -2 DAY);
 
 select pe.codigo,cli.codigo,pe.fechaEsperada,pe.fechaEntrega
-from cliente as cli 
+from cliente as cli
 inner join pedido as pe on pe.idCliente = cli.codigo
 where datediff(pe.fechaEsperada,pe.fechaEntrega)>=2;
 
 select  pe.codigo,cli.codigo,pe.fechaEsperada,pe.fechaEntrega,
 pe.fechaEntrega, (day(pe.fechaEntrega)-day(pe.fechaEsperada)) as diferencia
-from cliente as cli 
+from cliente as cli
 inner join pedido as pe on pe.idCliente = cli.codigo
 where  day(pe.fechaEntrega)-day(pe.fechaEsperada) <= -2 and month(pe.fechaEntrega) <= month(pe.fechaEsperada) ;
 
@@ -139,7 +144,7 @@ from pago;
 -- los de mayor precio.
 
 select pro.gama,pro.nombre
-from producto as pro 
+from producto as pro
 inner join gamaproducto as gp on gp.gama=pro.gama
 where gp.gama ="Ornamentales" and pro.cantidadstock >100
 order by pro.precioventa desc;
@@ -151,7 +156,7 @@ order by pro.precioventa desc;
 
 
 select cli.codigo,cli.nombre as cliente, cli.nombrecontacto as contacto
-from cliente as cli 
+from cliente as cli
 inner join ciudad as ci on ci.idciudad=cli.idciudad
 where ci.nombre="Madrid" and cli.codigoEmpleadoRepVentas = 11 or cli.codigoEmpleadoRepVentas = 30;
 
@@ -211,6 +216,11 @@ where cli.codigo not in(select codigocliente from pago);
 
 -- 6. Lista la dirección de las oficinas que tengan clientes en Fuenlabrada.
 
+    select ofi.nombre, dir.direccion
+    from oficina as ofi
+    inner join direccionOficina as dofi on dofi.idOficina=ofi.codigo
+    inner join direccion as dir on dir.idDireccion=dofi.idDireccion
+    where dir.direccion="Fuenlabrada";
 
 
 -- 7. Devuelve el nombre de los clientes y el nombre de sus representantes junto
@@ -279,24 +289,24 @@ where pa.codigocliente is null;
 -- pago y los que no han realizado ningún pedido.
 
 select cliente.nombre as cliente
-from cliente 
-left join pago on cliente.codigo = pago.codigocliente 
-left join pedido ON cliente.codigo = pedido.idCliente 
+from cliente
+left join pago on cliente.codigo = pago.codigocliente
+left join pedido ON cliente.codigo = pedido.idCliente
 where pago.idTransaccion is null or pedido.codigo is null;
 
 -- 4. Devuelve un listado que muestre solamente los empleados que no tienen
 -- una oficina asociada.
 
 select empleado.codigo, empleado.nombre as empleado,empleado.apellido1,empleado.apellido2
-from empleado 
-left join oficina on empleado.codigoOficina = oficina.codigo 
+from empleado
+left join oficina on empleado.codigoOficina = oficina.codigo
 where oficina.codigo is null;
 
 -- 5. Devuelve un listado que muestre solamente los empleados que no tienen un
 -- cliente asociado.
 select empleado.*
 from empleado
-left join cliente on empleado.codigo  = cliente.codigoEmpleadoRepVentas  
+left join cliente on empleado.codigo  = cliente.codigoEmpleadoRepVentas
 where cliente.codigoEmpleadoRepVentas is null;
 
 -- 6. Devuelve un listado que muestre solamente los empleados que no tienen un
@@ -304,8 +314,8 @@ where cliente.codigoEmpleadoRepVentas is null;
 
 select empleado.puesto,empleado.nombre,empleado.apellido1,empleado.apellido2, oficina.*
 from empleado
-left join cliente on empleado.codigo  = cliente.codigoEmpleadoRepVentas 
-left join oficina on empleado.codigoOficina  = oficina.codigo 
+left join cliente on empleado.codigo  = cliente.codigoEmpleadoRepVentas
+left join oficina on empleado.codigoOficina  = oficina.codigo
 where cliente.codigoEmpleadoRepVentas is null;
 
 -- 7. Devuelve un listado que muestre los empleados que no tienen una oficina
@@ -313,7 +323,7 @@ where cliente.codigoEmpleadoRepVentas is null;
 
 select distinct(empleado.codigo), empleado.nombre, empleado.codigoOficina, cliente.codigoEmpleadoRepVentas
 from empleado
-left join cliente on empleado.codigo  = cliente.codigoEmpleadoRepVentas  
+left join cliente on empleado.codigo  = cliente.codigoEmpleadoRepVentas
 where cliente.codigoEmpleadoRepVentas is null or empleado.codigoOficina is null;
 
 
@@ -323,7 +333,7 @@ where cliente.codigoEmpleadoRepVentas is null or empleado.codigoOficina is null;
 
 select producto.nombre, detallepedido.codigoProducto
 from producto
-left join detallepedido on producto.codigo = detallepedido.codigoProducto 
+left join detallepedido on producto.codigo = detallepedido.codigoProducto
 where detallepedido.codigoPedido is null;
 
 
@@ -332,7 +342,7 @@ where detallepedido.codigoPedido is null;
 -- producto.
 select producto.nombre, producto.descripcion, gamaproducto.imagen
 from  producto
-left join detallepedido on producto.codigo = detallepedido.codigoProducto 
+left join detallepedido on producto.codigo = detallepedido.codigoProducto
 left join gamaproducto on producto.gama = gamaproducto.gama
 where detallepedido.codigoPedido is null;
 
@@ -355,9 +365,9 @@ where oficina.codigo not in (
 
 -- 11. Devuelve un listado con los clientes que han realizado algún pedido pero no
 -- han realizado ningún pago.
-select cliente.nombre as cliente from cliente 
-left join pago on cliente.codigo = pago.codigocliente 
-left join pedido on cliente.codigo = pedido.idCliente 
+select cliente.nombre as cliente from cliente
+left join pago on cliente.codigo = pago.codigocliente
+left join pedido on cliente.codigo = pedido.idCliente
 where pedido.idCliente = cliente.codigo and pago.idTransaccion is null;
 
 
@@ -408,9 +418,9 @@ group by est.estado;
 
 select codigo, nombre, precioventa
 from producto
-where precioventa in ( select max(precioventa) from producto) or precioventa in (select min(precioventa) 
+where precioventa in ( select max(precioventa) from producto) or precioventa in (select min(precioventa)
 from producto)
-order by precioventa desc; 
+order by precioventa desc;
 
 -- 6. Calcula el número de clientes que tiene la empresa.
 
@@ -465,7 +475,7 @@ group by cli.nombre, cli.nombreContacto,cli.apellidoContacto;
 
 
 select pe.codigo,count(pro.codigo) as "Cantidad"
-from pedido as pe 
+from pedido as pe
 inner join detallepedido as dt on dt.codigopedido= pe.codigo
 inner join producto as pro on pro.codigo= dt.codigoProducto
 group by pe.codigo;
@@ -475,7 +485,7 @@ group by pe.codigo;
 -- cada uno de los pedidos.
 
 select pe.codigo,count(pro.codigo) as "Cantidad", sum(dt.precioUnidad*dt.cantidad) as total
-from pedido as pe 
+from pedido as pe
 inner join detallepedido as dt on dt.codigopedido= pe.codigo
 inner join producto as pro on pro.codigo= dt.codigoProducto
 group by pe.codigo;
@@ -486,7 +496,7 @@ group by pe.codigo;
 
 
 select pro.nombre, dt.cantidad
-from pedido as pe 
+from pedido as pe
 inner join detallepedido as dt on dt.codigopedido= pe.codigo
 inner join producto as pro on pro.codigo= dt.codigoProducto
 order by dt.cantidad desc
@@ -501,7 +511,7 @@ limit 20;
 
 
 select  sum(dt.precioUnidad*dt.cantidad) as "Base imponible", sum((dt.precioUnidad*dt.cantidad)*0.21) as  "Iva", sum((dt.precioUnidad*dt.cantidad)+(dt.precioUnidad*dt.cantidad)*0.21) as total
-from pedido as pe 
+from pedido as pe
 inner join detallepedido as dt on dt.codigopedido= pe.codigo
 inner join producto as pro on pro.codigo= dt.codigoProducto;
 
@@ -509,7 +519,7 @@ inner join producto as pro on pro.codigo= dt.codigoProducto;
 -- código de producto.
 
 select dt.codigoProducto,sum(dt.precioUnidad*dt.cantidad) as "Base imponible", sum((dt.precioUnidad*dt.cantidad)*0.21) as  "Iva", sum((dt.precioUnidad*dt.cantidad)+(dt.precioUnidad*dt.cantidad)*0.21) as total
-from pedido as pe 
+from pedido as pe
 inner join detallepedido as dt on dt.codigopedido= pe.codigo
 inner join producto as pro on pro.codigo= dt.codigoProducto
 group by dt.codigoProducto;
@@ -518,7 +528,7 @@ group by dt.codigoProducto;
 -- código de producto filtrada por los códigos que empiecen por OR.
 
 select dt.codigoProducto,sum(dt.precioUnidad*dt.cantidad) as "Base imponible", sum((dt.precioUnidad*dt.cantidad)*0.21) as  "Iva", sum((dt.precioUnidad*dt.cantidad)+(dt.precioUnidad*dt.cantidad)*0.21) as total
-from pedido as pe 
+from pedido as pe
 inner join detallepedido as dt on dt.codigopedido= pe.codigo
 inner join producto as pro on pro.codigo= dt.codigoProducto
 group by dt.codigoProducto
@@ -531,7 +541,7 @@ having dt.codigoproducto like "OR%";
 
 
 select dt.codigoProducto, pro.nombre, dt.cantidad, sum(dt.precioUnidad*dt.cantidad) as "Base imponible", sum((dt.precioUnidad*dt.cantidad)+(dt.precioUnidad*dt.cantidad)*0.21) as total
-from pedido as pe 
+from pedido as pe
 inner join detallepedido as dt on dt.codigopedido= pe.codigo
 inner join producto as pro on pro.codigo= dt.codigoProducto
 group by dt.codigoProducto, pro.nombre, dt.cantidad
@@ -604,8 +614,8 @@ where cantidadstock = (select min(cantidadstock) from producto);
 select nombre,apellido1,apellido2, email
 from empleado
 where codigo= (select codigoJefe
-from empleado 
-where nombre = "Alberto" and apellido1="Soria" 
+from empleado
+where nombre = "Alberto" and apellido1="Soria"
 );
 
 
@@ -662,18 +672,16 @@ from pago);
 -- 14. Devuelve un listado de los productos que nunca han aparecido en un
 -- pedido.
 
-select nombre 
+select nombre
 from producto where codigo not in(select codigoProducto
 from detallepedido);
 
 -- 15. Devuelve el nombre, apellidos, puesto y teléfono de la oficina de aquellos
 -- empleados que no sean representante de ventas de ningún cliente.
 
-select codigoEmpleadoRepVentas
-from cliente
-where codigoEmpleadoRepVentas not in (select codigo
-from empleado
-where puesto="Representante Ventas");
+select emp.*, (select telefono from oficina as ofi where ofi.codigo=emp.codigoOficina) as telefono
+from empleado as emp
+where emp.puesto="Representante Ventas" and emp.codigo not in (select codigoEmpleadoRepVentas from cliente);
 
 -- 16. Devuelve las oficinas donde no trabajan ninguno de los empleados que
 -- hayan sido los representantes de ventas de algún cliente que haya realizado

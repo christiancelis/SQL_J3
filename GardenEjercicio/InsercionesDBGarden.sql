@@ -140,7 +140,7 @@ INSERT INTO producto (codigo, nombre, dimensiones, descripcion, cantidadstock, p
 ('PROD017', 'Girasol', '40x30 cm', 'Planta ornamental de girasol para jardines y terrazas.', 110, 7.25, 5.00, 'Ornamentales', 1),
 ('PROD018', 'Cortacésped eléctrico', '100x50 cm', 'Cortacésped eléctrico para mantenimiento de césped.', 35, 95.00, 66.50, 'Herramientas', 3),
 ('PROD019', 'Pera Conference', '110x70 cm', 'Árbol frutal de peras Conference para huertos y jardines.', 18, 48.00, 33.75, 'Frutales', 5),
-('PROD020', 'Albahaca', '20x20 cm', 'Planta aromática de albahaca para cocinar y decorar.', 85, 6.00, 4.25, 'Herbáceas', 2);
+('OROD020', 'Albahaca', '20x20 cm', 'Planta aromática de albahaca para cocinar y decorar.', 85, 3200, 4.25, 'Herbáceas', 2);
 
 INSERT INTO tipodireccion (idtipo, tipo) VALUES
 (1, 'Residencial'),
@@ -156,7 +156,7 @@ INSERT INTO direccion (idDireccion, direccion, idtipo) VALUES
 ('DIR003', 'Apartado 789', 3),
 ('DIR004', 'Piso 1, Puerta A', 4),
 ('DIR005', 'Edificio Empresarial 789, Oficina 101', 5),
-('DIR006', 'Plaza Mayor 321', 1),
+('DIR006', 'Fuenlabrada', 1),
 ('DIR007', 'Calle del Comercio 654', 2),
 ('DIR008', 'Apartado 987', 3),
 ('DIR009', 'Piso 2, Puerta B', 4),
@@ -168,7 +168,7 @@ INSERT INTO direccion (idDireccion, direccion, idtipo) VALUES
 ('DIR015', 'Edificio Ejecutivo 654, Oficina 303', 5),
 ('DIR016', 'Calle de la Paz 789', 1),
 ('DIR017', 'Avenida de las Palmeras 456', 2),
-('DIR018', 'Apartado 654', 3),
+('DIR018', 'Fuenlabrada', 3),
 ('DIR019', 'Piso 4, Puerta D', 4),
 ('DIR020', 'Edificio Administrativo 654, Oficina 404', 5);
 
@@ -223,25 +223,26 @@ INSERT INTO empleado (codigo, nombre, apellido1, apellido2, extension, email, co
 (5, 'Luis', 'Sánchez', 'Díaz', '5678', 'luis.sanchez@example.com', NULL, 3, 'Representante Ventas'),
 (6, 'Elena', 'López', 'Hernández', '6789', 'elena.lopez@example.com', 'OFI019', 3, 'Representante Ventas'),
 (7, 'Pablo', 'Fernández', 'Martín', '7890', 'pablo.fernandez@example.com', 'OFI007', 3, 'Representante Ventas'),
-(8, 'Lucía', 'Pérez', 'García', '8901', 'lucia.perez@example.com', 'OFI008', 3, 'Representante Ventas'),
-(11, 'Manuel', 'Gómez', 'López', '9012', 'manuel.gomez@example.com', 'OFI009', 3, 'Representante Ventas');
+(8, 'Lucía', 'Pérez', 'García', '8901', 'lucia.perez@example.com', 'OFI008',7, 'Auxiliar ventas'),
+(11, 'Alberto', 'Soria', 'López', '9012', 'manuel.gomez@example.com', 'OFI009', 3, 'Representante Ventas'),
+(12, 'Anacleta', 'Gómez', 'López', '9013', 'anacle.gomez@example.com', NULL, 8, 'Pasante Ventas');
 
 
 INSERT INTO cliente (codigo, nombre, nombreContacto, apellidoContacto, telefono, fax, idCiudad, limiteCredito, codigoEmpleadoRepVentas)
 VALUES
-('2001', 'Jardinería Verde', 'María', 'Fernández', '+34 91 234 5678', '+34 91 234 5679', 'MAD', 15000.00, 5),
+('2001', 'Jardinería Verde', 'María', 'Fernández', '+34 91 234 5678', '+34 91 234 5679', 'MAD', 15000.00, 7),
 ('2002', 'Flores y Plantas S.A.', 'Pedro', 'Gómez', '+33 1 23 45 6789', '+33 1 23 45 6790', 'BCN', 20000.00, 6),
 ('2003', 'Herramientas de Jardín', 'Luisa', 'Hernández', '+44 20 1234 5678', '+44 20 1234 5679', 'VAL', 18000.00,7),
 ('2004', 'Analista de MarketingJardín del Edén', 'Eva', 'García', '+39 02 123 4567', '+39 02 123 4568', 'MIL', 23000.00, 6),
 ('2008', 'Plantas Exóticas', 'Diego', 'López', '+43 1 123 4567', '+43 1 123 4568', 'SEV', 21000.00, 7),
 ('2009', 'Verde y Más', 'Ana', 'Hernández', '+46 8 123 4567', '+46 8 123 4568', 'NYC', 24000.00, 8),
 ('2010', 'Jardín en Casa', 'José', 'Martín', '+45 33 12 3456', '+45 33 12 3457', 'STU', 26000.00, 11),
-('2011', 'Jardines Modernos', 'Marta', 'Gómez', '+34 93 987 6543', '+34 93 987 6544', 'BCN', 17000.00, 5),
+('2011', 'Jardines Modernos', 'Marta', 'Gómez', '+34 93 987 6543', '+34 93 987 6544', 'BCN', 17000.00, 6),
 ('2012', 'Flores Elegantes', 'Carlos', 'García', '+33 4 56 78 9012', '+33 4 56 78 9013', 'LYO', 21000.00, 6),
 ('2013', 'Jardines del Sur', 'Isabel', 'Hernández', '+39 02 123 4567', '+39 02 123 4568', 'MIL', 18000.00, 7),
 ('2014', 'Plantas Frescas', 'Juan', 'Martínez', '+32 2 987 6543', '+32 2 987 6544', 'OSA', 22000.00, 8),
 ('2015', 'Jardín Feliz', 'Laura', 'Sánchez', '+43 1 987 6543', '+43 1 987 6544', 'BRI', 25000.00, 11),
-('2016', 'Plantas Vivas', 'Pablo', 'Gómez', '+31 20 123 4567', '+31 20 123 4568', 'MAD', 19000.00, 5),
+('2016', 'Plantas Vivas', 'Pablo', 'Gómez', '+31 20 123 4567', '+31 20 123 4568', 'MAD', 19000.00, 7),
 ("2017", 'Flores y Más', 'Cristina', 'Pérez', '+41 44 123 4567', '+41 44 123 4568', 'MEL', 23000.00, 6),
 ("2018", 'Jardines Urbanos', 'Javier', 'Hernández', '+48 22 123 4567', '+48 22 123 4568', 'SEV', 21000.00, 7),
 ("2019", 'Naturaleza en Casa', 'María', 'Martínez', '+47 21 12 3456', '+47 21 12 3457', 'CDMX', 24000.00, 8),
@@ -337,4 +338,4 @@ INSERT INTO detallepedido (codigoPedido, codigoProducto, cantidad, precioUnidad,
 (3009, 'PROD017', 5, 90.00, 1),
 (3009, 'PROD018', 7, 95.00, 2),
 (3010, 'PROD019', 10, 100.00, 1),
-(3010, 'PROD020', 12, 105.00, 2);
+(3010, 'OROD020', 12, 5400, 2);

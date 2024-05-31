@@ -59,8 +59,19 @@
     ``` 
 3. Devuelve un listado con el nombre, apellidos y email de los empleados cuyo
 jefe tiene un código de jefe igual a 7.
-
-
+    ```sql 
+    select emp.nombre, emp.apellido1,emp.apellido2,emp.email 
+    from empleado as emp      
+    inner join empleado as jf on jf.codigo=emp.codigoJefe
+    where jf.codigoJefe=7;
+    ```
+    ```bash
+    +----------+-----------+-----------+--------------------------+
+    | nombre   | apellido1 | apellido2 | email                    |
+    +----------+-----------+-----------+--------------------------+
+    | Anacleta | Gómez     | López     | anacle.gomez@example.com |
+    +----------+-----------+-----------+--------------------------+    
+    ``` 
 4. Devuelve el nombre del puesto, nombre, apellidos y email del jefe de la
 empresa.
 
@@ -353,6 +364,7 @@ cuyo representante de ventas tenga el código de empleado 11 o 30.
     | codigoEmpleadoRepVentas | codigo | cliente             | contacto |
     +-------------------------+--------+---------------------+----------+
     |                      11 |   2020 | Plantas Decorativas | Antonio  |
+    +-------------------------+--------+---------------------+----------+
     ```
 
 ## Consultas multitabla (Composición interna)
@@ -494,9 +506,19 @@ representante.
 6. Lista la dirección de las oficinas que tengan clientes en Fuenlabrada.
     
     ```sql
-
+    select ofi.nombre, dir.direccion
+    from oficina as ofi
+    inner join direccionOficina as dofi on dofi.idOficina=ofi.codigo
+    inner join direccion as dir on dir.idDireccion=dofi.idDireccion
+    where dir.direccion="Fuenlabrada";
     ```
-
+    ```bash
+    +---------------+-------------+
+    | nombre        | direccion   |
+    +---------------+-------------+
+    | Oficina Pekin | Fuenlabrada |
+    +---------------+-------------+
+    ```
 7. Devuelve el nombre de los clientes y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante.
 
     ```sql
@@ -980,6 +1002,7 @@ misma consulta.
 
 8. ¿Calcula cuántos clientes tiene cada una de las ciudades que empiezan
 por M?
+
     ```sql
     select city.nombre , count(cli.codigo) as "Cantidad"
     from cliente as cli
@@ -1177,17 +1200,21 @@ por M?
     ```
 17. La misma información que en la pregunta anterior, pero agrupada por código de producto filtrada por los códigos que empiecen por OR.
 
-```sql
-select dt.codigoProducto,sum(dt.precioUnidad*dt.cantidad) as "Base imponible", sum((dt.precioUnidad*dt.cantidad)*0.21) as  "Iva", sum((dt.precioUnidad*dt.cantidad)+(dt.precioUnidad*dt.cantidad)*0.21) as total
-from pedido as pe 
-inner join detallepedido as dt on dt.codigopedido= pe.codigo
-inner join producto as pro on pro.codigo= dt.codigoProducto
-group by dt.codigoProducto
-having dt.codigoproducto like "OR%";
-```
-```bash
-adicionar valor;
-```
+    ```sql
+    select dt.codigoProducto,sum(dt.precioUnidad*dt.cantidad) as "Base imponible", sum((dt.precioUnidad*dt.cantidad)*0.21) as  "Iva", sum((dt.precioUnidad*dt.cantidad)+(dt.precioUnidad*dt.cantidad)*0.21) as total
+    from pedido as pe 
+    inner join detallepedido as dt on dt.codigopedido= pe.codigo
+    inner join producto as pro on pro.codigo= dt.codigoProducto
+    group by dt.codigoProducto
+    having dt.codigoproducto like "OR%";
+    ```
+    ```bash
+    +----------------+----------------+----------+-----------+
+    | codigoProducto | Base imponible | Iva      | total     |
+    +----------------+----------------+----------+-----------+
+    | OROD020        |        1260.00 | 264.6000 | 1524.6000 |
+    +----------------+----------------+----------+-----------+
+    ```
 
 18. Lista las ventas totales de los productos que hayan facturado más de 3000 euros. Se mostrará el nombre, unidades vendidas, total facturado y total facturado con impuestos (21% IVA).
 
@@ -1200,7 +1227,11 @@ adicionar valor;
     having total>3000;
     ```
     ```bash
-    adicionar valor
+    +----------------+----------+----------+----------------+------------+
+    | codigoProducto | nombre   | cantidad | Base imponible | total      |
+    +----------------+----------+----------+----------------+------------+
+    | OROD020        | Albahaca |       12 |       64800.00 | 78408.0000 |
+    +----------------+----------+----------+----------------+------------+
     ```
 19. Muestre la suma total de todos los pagos que se realizaron para cada uno de los años que aparecen en la tabla pagos.
 
@@ -1343,7 +1374,11 @@ from pago where codigocliente=cli.codigo);
     where nombre = "Alberto" and apellido1="Soria" );
     ```
     ```bash
-    agregar valor
+    +--------+-----------+-----------+-----------------------------+
+    | nombre | apellido1 | apellido2 | email                       |
+    +--------+-----------+-----------+-----------------------------+
+    | Pedro  | Rodríguez | Gómez     | pedro.rodriguez@example.com |
+    +--------+-----------+-----------+-----------------------------+
     ```
 
 ## Subconsultas con ALL y ANY
@@ -1482,16 +1517,19 @@ realizado ningún pago.
 
 
 15. Devuelve el nombre, apellidos, puesto y teléfono de la oficina de aquellos empleados que no sean representante de ventas de ningún cliente.
-```sql
-select codigoEmpleadoRepVentas
-from cliente
-where codigoEmpleadoRepVentas not in (select codigo
-from empleado
-where puesto="Representante Ventas");
-```
-```bash
-insertar valor
-```
+    ```sql
+    select emp.*, (select telefono from oficina as ofi where ofi.codigo=emp.codigoOficina) as telefono
+    from empleado as emp
+    where emp.puesto="Representante Ventas" and emp.codigo not in (select codigoEmpleadoRepVentas from cliente);
+
+    ```
+    ```bash
+    +--------+--------+-----------+-----------+-----------+--------------------------+---------------+------------+----------------------+----------+
+    | codigo | nombre | apellido1 | apellido2 | extension | email                    | codigoOficina | codigoJefe | puesto               | telefono |
+    +--------+--------+-----------+-----------+-----------+--------------------------+---------------+------------+----------------------+----------+
+    |      5 | Luis   | Sánchez   | Díaz      | 5678      | luis.sanchez@example.com | NULL          |          3 | Representante Ventas | NULL     |
+    +--------+--------+-----------+-----------+-----------+--------------------------+---------------+------------+----------------------+----------+
+    ```
 
 16. Devuelve las oficinas donde no trabajan ninguno de los empleados que hayan sido los representantes de ventas de algún cliente que haya realizado la compra de algún producto de la gama Frutales.
 
@@ -1741,11 +1779,11 @@ order by cli.nombre asc;
 5. Devuelve el listado de clientes donde aparezca el nombre del cliente, el nombre y primer apellido de su representante de ventas y la ciudad donde está su oficina.
 
     ```sql
-    SELECT c.nombre AS nombre_cliente, e.nombre AS nombre_rep_ventas, e.apellido1 AS apellido_rep_ventas, ci.nombre AS ciudad_oficina
-    FROM cliente c
-    JOIN empleado e ON c.codigoEmpleadoRepVentas = e.codigo
-    JOIN oficina o ON e.codigoOficina = o.codigo
-    JOIN ciudad ci ON o.idCiudad = ci.idCiudad;
+    select c.nombre as nombre_cliente, e.nombre as nombre_rep_ventas, e.apellido1 as apellido_rep_ventas, ci.nombre as ciudad_oficina
+    from cliente c
+    inner join empleado e on c.codigoEmpleadoRepVentas = e.codigo
+    inner join oficina o on e.codigoOficina = o.codigo
+    inner join ciudad ci on o.idCiudad = ci.idCiudad;
     ```
     ```bash
     +----------------------------------------+-------------------+---------------------+----------------+
@@ -1772,11 +1810,10 @@ order by cli.nombre asc;
 6. Devuelve el nombre, apellidos, puesto y teléfono de la oficina de aquellos empleados que no sean representante de ventas de ningún cliente.
 
     ```sql
-    SELECT e.nombre AS nombre_empleado, e.apellido1 AS apellido1_empleado, e.apellido2 AS apellido2_empleado, e.puesto, o.telefono AS telefono_oficina
-    FROM empleado e
-    JOIN oficina o ON e.codigoOficina = o.codigo
-    LEFT JOIN cliente c ON e.codigo = c.codigoEmpleadoRepVentas
-    WHERE c.codigoEmpleadoRepVentas IS NULL;
+    select e.nombre as "nombre empleado", e.apellido1 as"apellido1 empleado", e.apellido2 as "apellido2 empleado", e.puesto, (select telefono from oficina as ofi where ofi.codigo=e.codigoOficina) as telefono
+    from empleado e
+    left join cliente c on e.codigo = c.codigoEmpleadoRepVentas
+    where c.codigoEmpleadoRepVentas is null;
     ```
     ```bash
     +-----------------+--------------------+--------------------+-----------------------+-------------------+
@@ -1792,11 +1829,10 @@ order by cli.nombre asc;
 7. Devuelve un listado indicando todas las ciudades donde hay oficinas y el número de empleados que tiene.
 
     ```sql
-    SELECT ci.nombre AS ciudad, COUNT(e.codigo) AS numero_empleados
-    FROM oficina o
-    JOIN ciudad ci ON o.idCiudad = ci.idCiudad
-    JOIN empleado e ON e.codigoOficina = o.codigo
-    GROUP BY ci.nombre;
+    select (select ci.nombre from ciudad as ci where o.idCiudad = ci.idCiudad) as Ciudad, COUNT(e.codigo) as "numero empleados"
+    from oficina o
+    inner join empleado e on e.codigoOficina = o.codigo
+    group by Ciudad;
     ```
     ```bash
     +--------------+------------------+
